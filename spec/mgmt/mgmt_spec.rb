@@ -122,5 +122,5 @@ describe file('/etc/rabbitmq/rabbitmq.config') do
   it { should be_mode 644 }
   it { should be_owned_by 'root' }
 
-  its(:content) { should match /\{rabbit, \[\{cluster_nodes, \['rabbit@mgmt064'\]\}\]\}/ }
+  its(:content) { should match /\{rabbit, \[\{cluster_nodes, \['rabbit@#{property[:hostname]}'\]\}\]\}/ }
 end
