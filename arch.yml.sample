@@ -1,0 +1,33 @@
+---
+lb001.enocloud.com:
+  :roles:
+    - base
+    - lbbase
+    - lbmaster
+  :server_id: 101
+lb002.enocloud.com:
+  :roles:
+    - base
+    - lbbase
+    - lbbackup
+  :server_id: 102
+mgmt001.enocloud.com:
+  :roles:
+    - base
+    - mgmt
+  :server_id: 103
+mgmt002.enocloud.com:
+  :roles:
+    - base
+    - mgmt
+  :server_id: 104
+mgmt003.enocloud.com:
+  :roles:
+    - base
+    - mgmt
+  :server_id: 105
+mgmt004.enocloud.com:
+  :roles:
+    - base
+    - mgmt
+  :server_id: 106
