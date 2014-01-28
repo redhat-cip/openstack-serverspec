@@ -37,3 +37,11 @@ mgmt004.enocloud.com:
     - mgmt
   :server_ip: 106
   :hostname: mgmt004
+cmpt001.enocloud.com:
+  :roles:
+    - base
+    - cmpt
+  :server_ip: 107
+  :hostname: cmpt001
+  :hostname_vip: openstack.enocloud.com
+  :virt_type: kvm
