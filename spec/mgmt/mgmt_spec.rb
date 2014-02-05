@@ -33,6 +33,10 @@ describe port(3306) do
   it { should be_listening.with('tcp') }
 end
 
+describe port(4567) do
+  it { should be_listening.with('tcp') }
+end
+
 # TODO: check user presence command.return_exit_status
 
 # On the Galera master
@@ -89,7 +93,7 @@ end
 # * package 'rabbitmq-server' needs to be installed
 # * service 'rabbitmq-server' needs to be running and started at boot
 # * process 'epmd' needs to be running
-# * service has to be listening on port '5672', '4369', '56357'
+# * service has to be listening on port '5672', '4369'
 # * ensure the index 'ceilometer' is installed
 #
 
@@ -102,15 +106,13 @@ describe service('rabbitmq-server') do
   it { should be_running }
 end
 
-describe port(5672) do
-  it { should be_listening.with('tcp6') }
-end
-
+# rabbitmq (epmd)
 describe port(4369) do
   it { should be_listening.with('tcp') }
 end
 
-describe port(56357) do
+# rabbitmq (beam)
+describe port(5672) do
   it { should be_listening.with('tcp') }
 end
 
