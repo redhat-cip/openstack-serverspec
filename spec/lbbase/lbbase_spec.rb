@@ -44,3 +44,9 @@ describe file('/etc/keepalived/keepalived.conf') do
     its(:content) { should match /notify_backup "\/etc\/init.d\/haproxy stop"/ }
 
 end
+
+# mysql proxy
+describe port(3306) do
+  it { should be_listening.with('tcp') }
+end
+
