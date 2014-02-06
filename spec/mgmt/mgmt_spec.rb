@@ -109,7 +109,7 @@ end
 
 # rabbitmq (beam)
 describe port(5672) do
-  it { should be_listening.with('tcp') }
+  it { should be_listening }    # don't specify tcp or tcp6 as netstat reports it in different ways
 end
 
 describe process('epmd') do
