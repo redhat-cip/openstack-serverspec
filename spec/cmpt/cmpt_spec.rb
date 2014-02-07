@@ -68,9 +68,9 @@ describe package('pm-utils') do
   it { should be_installed }
 end
 
-describe package('bridge-utils') do
-  it { should_not be_installed }
-end
+# describe package('bridge-utils') do
+#   it { should_not be_installed }
+# end
 
 describe package('nova-common') do
   it { should be_installed }
