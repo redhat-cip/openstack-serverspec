@@ -23,8 +23,24 @@ describe command('ceph --admin-daemon /var/run/ceph/ceph-mon.*.asok mon_status')
   its(:stdout) { should match /leader|peon/ }
 end
 
+# Check defaults RBD pools
+
 describe command('ceph osd dump') do
   its(:stdout) { should match /pool . 'data'/ }
 end
 
-# data, metadata, rbd, volumes, images
+describe command('ceph osd dump') do
+  its(:stdout) { should match /pool . 'rbd'/ }
+end
+
+describe command('ceph osd dump') do
+  its(:stdout) { should match /pool . 'metadata'/ }
+end
+
+describe command('ceph osd dump') do
+  its(:stdout) { should match /pool . 'volumes'/ }
+end
+
+describe command('ceph osd dump') do
+  its(:stdout) { should match /pool . 'images'/ }
+end
