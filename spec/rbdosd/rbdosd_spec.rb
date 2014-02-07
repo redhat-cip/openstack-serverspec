@@ -38,3 +38,15 @@ end
 describe command('mount') do
   its(:stdout) { should match /\/var\/lib\/ceph\/osd\/ceph-0 type xfs/ }
 end
+
+describe file('/var/lib/ceph/osd/ceph-0/fsid') do
+  it { should be_file }
+end
+
+describe file('/var/lib/ceph/osd/ceph-0/ready') do
+  it { should be_file }
+end
+
+describe file('/var/lib/ceph/osd/ceph-0/keyring') do
+  it { should be_file }
+end
