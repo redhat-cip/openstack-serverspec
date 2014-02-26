@@ -15,22 +15,6 @@ describe port(6800) do
   it { should be_listening.with('tcp') }
 end
 
-describe port(6801) do
-  it { should be_listening.with('tcp') }
-end
-
-describe port(6802) do
-  it { should be_listening.with('tcp') }
-end
-
-describe port(6803) do
-  it { should be_listening.with('tcp') }
-end
-
-describe port(6804) do
-  it { should be_listening.with('tcp') }
-end
-
 describe command('ceph --admin-daemon $(ls /var/run/ceph/ceph-osd.*.asok|head -1) version') do
   it { should return_exit_status 0 }
 end
