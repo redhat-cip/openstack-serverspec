@@ -39,7 +39,7 @@ describe file('/etc/keepalived/keepalived.conf') do
 
     its(:content) { should match /^vrrp_instance 1 {/ }
     it { should contain('virtual_router_id 1').from(/^vrrp_instance/).to(/^}/) }
-    its(:content) { should match /interface eth0/ }
+    its(:content) { should match /interface/ }
     its(:content) { should match /notify_master "\/etc\/init.d\/haproxy start"/ }
     its(:content) { should match /notify_backup "\/etc\/init.d\/haproxy stop"/ }
 
