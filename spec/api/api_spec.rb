@@ -51,12 +51,6 @@ describe service('heat-api-cloudwatch') do
   it { should be_running }
 end
 
-# uncomment when bug 174 is fixed
-# describe service('heat-api-engine') do
-#   it { should be_enabled }
-#   it { should be_running }
-# end
-
 describe service('neutron-server') do
   it { should be_enabled }
   it { should be_running }
