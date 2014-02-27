@@ -85,6 +85,11 @@ describe service('nova-compute') do
   it { should be_running }
 end
 
+describe service('ceilometer-agent-compute') do
+  it { should be_enabled }
+  it { should be_running }
+end
+
 describe file('/etc/nova/nova.conf') do
   it { should be_mode 640 }
   it { should be_owned_by 'nova' }
@@ -92,12 +97,6 @@ describe file('/etc/nova/nova.conf') do
   its(:content) { should match /compute_driver=libvirt\.LibvirtDriver/ }
   its(:content) { should match /libvirt_type=#{property[:virt_type]}/ }
   its(:content) { should match /connection_type=libvirt/ }
-  its(:content) { should match /vncserver_listen=0\.0\.0\.0/ }
-
-  its(:content) { should match /novncproxy_base_url=http:\/\/#{property[:hostname_vip]}:6080\/vnc_auto\.html/ }
-  its(:content) { should match /vnc_enabled=True/ }
-  its(:content) { should match /vncserver_proxyclient_address=#{property[:server_ip]}/ }
-
 end
 
 #
