@@ -29,6 +29,11 @@ describe service('mysql') do
   it { should be_running }
 end
 
+describe command("echo \"db.system.indexes.find()\" | mongo \"#{property[:server_ip]}\":27017/ceilometer") do
+    its(:stdout) { should match /"ns" : "ceilometer.resource"/ }
+end
+
+end
 describe port(3306) do
   it { should be_listening.with('tcp') }
 end
