@@ -76,7 +76,7 @@ describe service('nova-consoleauth') do
   it { should be_running }
 end
 
-describe service('nova-novncproxy') do
+describe service('nova-spicehtml5proxy') do
   it { should be_enabled }
   it { should be_running }
 end
