@@ -122,3 +122,11 @@ describe service('libvirt-bin') do
   it { should be_enabled }
   it { should be_running }
 end
+
+#
+# cloud::compute
+#
+
+describe file('/etc/nova/nova.conf') do
+  it { should contain "resume_guests_state_on_host_boot=true" }
+end
