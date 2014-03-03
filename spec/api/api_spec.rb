@@ -6,26 +6,6 @@ require 'spec_helper'
 #
 #################################
 
-describe service('cinder-api') do
-  it { should be_enabled }
-  it { should be_running }
-end
-
-describe service('cinder-backup') do
-  it { should be_enabled }
-  it { should be_running }
-end
-
-describe service('cinder-scheduler') do
-  it { should be_enabled }
-  it { should be_running }
-end
-
-describe service('cinder-volume') do
-  it { should be_enabled }
-  it { should be_running }
-end
-
 describe service('glance-api') do
   it { should be_enabled }
   it { should be_running }
