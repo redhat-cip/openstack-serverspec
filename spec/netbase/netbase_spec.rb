@@ -11,7 +11,7 @@ describe service('openvswitch-switch') do
   it { should be_running }
 end
 
-describe service('neutron-openvswitch-agent') do
+describe service('neutron-plugin-openvswitch-agent') do
   it { should be_enabled }
   it { should be_running }
 end
