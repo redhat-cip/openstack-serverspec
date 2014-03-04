@@ -15,6 +15,10 @@ describe port(5000) do
   it { should be_listening.with('tcp') }
 end
 
+describe port(35357) do
+  it { should be_listening.with('tcp') }
+end
+
 describe command('sh -c \'echo "show tables;"|mysql keystone\'') do
   its(:stdout) { should match /.*endpoint.*/ }
 end
