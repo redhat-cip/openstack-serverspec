@@ -4,6 +4,42 @@ require 'spec_helper'
 # cloud::telemetry::server
 #
 
+describe package('ceilometer-api') do
+  it { should be_installed }
+end
+
+describe service('ceilometer-api') do
+  it { should be_enabled }
+  it { should be_running }
+end
+
+describe package('ceilometer-collector') do
+  it { should be_installed }
+end
+
+describe service('ceilometer-collector') do
+  it { should be_enabled }
+  it { should be_running }
+end
+
+describe package('ceilometer-alarm-evaluator') do
+  it { should be_installed }
+end
+
+describe service('ceilometer-alarm-evaluator') do
+  it { should be_enabled }
+  it { should be_running }
+end
+
+describe package('ceilometer-alarm-notifier') do
+  it { should be_installed }
+end
+
+describe service('ceilometer-alarm-notifier') do
+  it { should be_enabled }
+  it { should be_running }
+end
+
 describe user('ceilometer') do
   it { should exist }
   it { should belong_to_group 'ceilometer' }
