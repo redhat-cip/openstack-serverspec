@@ -33,7 +33,6 @@ describe command("echo \"db.system.indexes.find()\" | mongo \"#{property[:server
     its(:stdout) { should match /"ns" : "ceilometer.resource"/ }
 end
 
-end
 describe port(3306) do
   it { should be_listening.with('tcp') }
 end
