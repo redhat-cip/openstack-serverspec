@@ -1,0 +1,7 @@
+require_relative '../tests/dashboard/dashboard_spec.rb'
+require_relative '../tests/image/image_spec.rb'
+require_relative '../tests/netbase/netbase_spec.rb'
+require_relative '../tests/networkcontroller/networkcontroller_spec.rb'
+require_relative '../tests/orchestrationapi/orchestrationapi_spec.rb'
+require_relative '../tests/telemetryserver/telemetryserver_spec.rb'
+require_relative '../tests/volumecontroller/volumecontroller_spec.rb'
