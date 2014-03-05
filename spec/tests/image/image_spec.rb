@@ -44,6 +44,6 @@ describe file('/etc/ceph/ceph.client.glance.keyring') do
 end
 
 describe cron do
-  it { should have_entry '1 0 * * * glance-cache-cleaner' }
-  it { should have_entry '*/30 * * * * glance-cache-pruner' }
+  it { should have_entry('1 0 * * * glance-cache-cleaner').with_user('glance') }
+  it { should have_entry('*/30 * * * * glance-cache-pruner').with_user('glance') }
 end
