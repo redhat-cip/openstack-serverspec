@@ -37,9 +37,8 @@ end
 #
 
 describe file('/etc/cinder/cinder.conf') do
-  it { should contain "rbd_pool=volumes" }
-  it { should contain "rdb_user=cinder" }
-  it { should contain "glance_api_version=2" }
+  its(:content) { should match /^rbd_pool=volumes$/ }
+  its(:content) { should match /^rbd_user=cinder$/ }
 end
 
 describe file('/etc/ceph/ceph.client.cinder.keyring') do

@@ -30,11 +30,11 @@ describe package('python-ceph') do
     it { should be_installed }
 end
 
-describe file('/etc/glance/glance.conf') do
-  it { should contain "default_store=rbd" }
-  it { should contain "rbd_store_pool=images" }
-  it { should contain "rbd_store_user=glance" }
-  it { should contain "rbd_store_ceph_conf=/etc/ceph/ceph.conf" }
+describe file('/etc/glance/glance-api.conf') do
+  its(:content) { should match /^default_store = rbd$/ }
+  its(:content) { should match /^rbd_store_pool = images$/ }
+  its(:content) { should match /^rbd_store_user = glance$/ }
+  its(:content) { should match /^rbd_store_ceph_conf = \/etc\/ceph\/ceph.conf$/ }
 end
 
 describe file('/etc/ceph/ceph.client.glance.keyring') do

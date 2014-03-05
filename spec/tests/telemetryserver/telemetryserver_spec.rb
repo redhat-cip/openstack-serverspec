@@ -61,12 +61,10 @@ describe file('/etc/ceilometer/ceilometer.conf') do
   it { should be_mode 640 }
   it { should be_owned_by 'ceilometer' }
   it { should be_grouped_into 'ceilometer' }
-  it { should contain 'rpc_backend=ceilometer.openstack.common.rpc.impl_kombu' }
-  it { should contain 'log_dir=/var/log/ceilometer' }
-  it { should contain 'glance_control_exchange=glance' }
-  it { should contain 'notification_topics=notifications' }
-  it { should contain 'use_syslog=true' }
-  it { should contain 'syslog_log_facility=LOG_USER' }
+  its(:content) { should match /^rpc_backend=ceilometer.openstack.common.rpc.impl_kombu$/ }
+  its(:content) { should match /^notification_topics=notifications$/ }
+  its(:content) { should match /^use_syslog=True$/ }
+  its(:content) { should match /^syslog_log_facility=LOG_LOCAL0$/ }
 end
 
 describe package('ceilometer-common') do

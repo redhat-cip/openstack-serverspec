@@ -124,5 +124,5 @@ end
 #
 
 describe file('/etc/nova/nova.conf') do
-  it { should contain "resume_guests_state_on_host_boot=true" }
+  its(:content) { should match /^resume_guests_state_on_host_boot=True$/ }
 end
