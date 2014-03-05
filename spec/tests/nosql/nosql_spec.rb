@@ -40,8 +40,3 @@ end
 describe port(28017) do
   it { should be_listening.with('tcp') }
 end
-
-describe command("echo \"db.system.indexes.find()\" | mongo \"#{property[:server_ip]}\":27017/ceilometer") do
-    its(:stdout) { should match /"ns" : "ceilometer.resource"/ }
-end
-

@@ -70,3 +70,10 @@ end
 describe package('ceilometer-common') do
   it { should be_installed }
 end
+
+describe command("mongo \"#{property[:server_ip]}\":27017/ceilometer " \
+                 "--eval \"assert(db.isMaster().ismaster " \
+                 "? db.system.indexes.find({ ns: 'ceilometer.resource' }).length() == 2 " \
+                 ": true)\"") do
+  it { should return_exit_status 0 }
+end
