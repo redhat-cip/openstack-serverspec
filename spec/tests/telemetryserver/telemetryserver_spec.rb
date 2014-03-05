@@ -51,14 +51,14 @@ end
 
 describe file('/etc/ceilometer') do
   it { should be_directory }
-  it { should be_mode 0750 }
+  it { should be_mode 750 }
   it { should be_owned_by 'ceilometer' }
   it { should be_grouped_into 'ceilometer' }
 end
 
 describe file('/etc/ceilometer/ceilometer.conf') do
   it { should be_file }
-  it { should be_mode 0640 }
+  it { should be_mode 640 }
   it { should be_owned_by 'ceilometer' }
   it { should be_grouped_into 'ceilometer' }
   it { should contain 'rpc_backend=ceilometer.openstack.common.rpc.impl_kombu' }
