@@ -19,10 +19,6 @@ describe port(35357) do
   it { should be_listening.with('tcp') }
 end
 
-describe command('sh -c \'echo "show tables;"|mysql keystone\'') do
-  its(:stdout) { should match /.*endpoint.*/ }
-end
-
-describe command('sh -c \'echo "select * from endpoint;"|mysql keystone\'') do
-  its(:stdout) { should match /http.*/ }
+describe command("keystone --os-username #{property[:ks_user_name]} --os-password #{property[:ks_user_password]} --os-tenant-name #{property[:ks_tenant_name]} --os-auth-url http://#{property[:vip_public]}:5000/v2.0 user-list") do
+  it { should return_exit_status 0 }
 end
