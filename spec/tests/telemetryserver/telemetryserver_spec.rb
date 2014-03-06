@@ -62,6 +62,8 @@ describe file('/etc/ceilometer/ceilometer.conf') do
   it { should be_owned_by 'ceilometer' }
   it { should be_grouped_into 'ceilometer' }
   its(:content) { should match /^rpc_backend=ceilometer.openstack.common.rpc.impl_kombu$/ }
+  its(:content) { should match /^log_dir ?= ?/var/log/ceilometer$/ }
+  its(:content) { should match /^glance_control_exchange=glance$/ }
   its(:content) { should match /^notification_topics=notifications$/ }
   its(:content) { should match /^use_syslog=True$/ }
   its(:content) { should match /^syslog_log_facility=LOG_LOCAL0$/ }
