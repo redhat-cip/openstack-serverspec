@@ -13,6 +13,10 @@ describe service('ceilometer-api') do
   it { should be_running }
 end
 
+describe port(8777) do
+  it { should be_listening.with('tcp') }
+end
+
 describe package('ceilometer-collector') do
   it { should be_installed }
 end
