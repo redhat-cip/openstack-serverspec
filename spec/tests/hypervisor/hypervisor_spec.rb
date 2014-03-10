@@ -128,8 +128,6 @@ describe file('/etc/nova/nova.conf') do
 end
 
 # Test for Ceph:
-describe command('virsh secret-list |grep cinder') do
+describe command('virsh secret-list | grep cinder') do
   it { should return_exit_status 0 }
 end
-end
-
