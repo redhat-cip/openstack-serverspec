@@ -137,6 +137,6 @@ describe port(6082) do
 end
 
 # swift_api_cluster
-describe port(8080) do
-  it { should be_listening.with('tcp') }
-end
+#describe port(8080) do
+#  it { should be_listening.with('tcp') }
+#end
