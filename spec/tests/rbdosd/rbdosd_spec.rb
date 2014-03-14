@@ -20,7 +20,7 @@ describe command('ceph --admin-daemon $(ls /var/run/ceph/ceph-osd.*.asok|head -1
 end
 
 describe command('mount') do
-  its(:stdout) { should match /\/var\/lib\/ceph\/osd\/ceph-. type xfs/ }
+  its(:stdout) { should match /\/var\/lib\/ceph\/osd\/ceph-.+ type xfs/ }
 end
 
 describe command('test -s "$(ls /var/lib/ceph/osd/ceph-*/fsid|head -1)"') do
