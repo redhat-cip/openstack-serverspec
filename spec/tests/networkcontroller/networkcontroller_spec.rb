@@ -20,7 +20,7 @@ describe file('/etc/neutron/plugins/ml2/ml2_conf.ini') do
   its(:content) { should match /^tunnel_id_ranges ?= ?1:10000$/ }
   its(:content) { should match /^mechanism_drivers ?= ?openvswitch,l2population$/ }
   its(:content) { should match /^l2_population ?= ?True$/ }
-  its(:content) { should match /^polling_interval ?= ?2$/ }
+  its(:content) { should match /^polling_interval ?= ?15$/ }
   its(:content) { should match /^local_ip ?= ?#{property[:server_ip]}$/ }
   its(:content) { should match /^enable_tunneling ?= ?True$/ }
   its(:content) { should match /^integration_bridge ?= ?br-int$/ }
