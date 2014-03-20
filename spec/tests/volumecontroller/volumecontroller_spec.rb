@@ -39,6 +39,7 @@ end
 describe file('/etc/cinder/cinder.conf') do
   its(:content) { should match /^rbd_pool=volumes$/ }
   its(:content) { should match /^rbd_user=cinder$/ }
+  its(:content) { should match /^volume_backend_name=ceph$/ }
 end
 
 describe file('/etc/ceph/ceph.client.cinder.keyring') do
