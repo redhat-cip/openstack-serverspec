@@ -51,8 +51,8 @@ end
 
 describe 'rabbitmq_cluster_status' do
   output = command("rabbitmqctl cluster_status").stdout
-  nodes = eval(output.scan(/{nodes,\[{disc,(\[.*\])}\]}/m)[0][0]).sort()
-  running_nodes = eval(output.scan(/{running_nodes,(\[.*\])}/m)[0][0]).sort()
+  nodes = eval(output.scan(/{nodes,\[{disc,(\[.*?\])}\]}/m)[0][0]).sort()
+  running_nodes = eval(output.scan(/{running_nodes,(\[.*?\])}/m)[0][0]).sort()
   running_nodes.should == nodes
 end
 
