@@ -9,6 +9,10 @@ describe service('nova-api') do
   it { should be_running }
 end
 
+describe command("nova --os-username #{property[:ks_user_name]} --os-password #{property[:ks_user_password]} --os-tenant-name #{property[:ks_tenant_name]} --os-auth-url http://#{property[:vip_public]}:5000/v2.0 flavor-list") do
+  it { should return_exit_status 0 }
+end
+
 describe port(8773) do
   it { should be_listening.with('tcp') }
 end
