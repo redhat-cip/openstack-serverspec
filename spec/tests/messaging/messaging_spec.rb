@@ -49,13 +49,6 @@ describe file('/etc/rabbitmq/rabbitmq.config') do
   its(:content) { should match /\{cluster_nodes, \{\[.*'rabbit@#{property[:hostname]}'.*\], disc\}\}/ }
 end
 
-describe 'rabbitmq_cluster_status' do
-  output = command("rabbitmqctl cluster_status").stdout
-  nodes = eval(output.scan(/{nodes,\[{disc,(\[.*?\])}\]}/m)[0][0]).sort()
-  running_nodes = eval(output.scan(/{running_nodes,(\[.*?\])}/m)[0][0]).sort()
-  running_nodes.should == nodes
-end
-
 describe command('rabbitmqctl list_users') do
   it { should return_stdout /^ceilometer/ }
   it { should return_stdout /^cinder/ }
