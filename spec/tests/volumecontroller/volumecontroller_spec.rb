@@ -43,8 +43,8 @@ describe file('/etc/cinder/cinder.conf') do
 end
 
 describe file('/etc/ceph/ceph.client.cinder.keyring') do
-  it { should be_owned_by 'cinder' }
-  it { should be_grouped_into 'cinder' }
+  it { should be_owned_by 'cephkeyring' }
+  it { should be_grouped_into 'cephkeyring' }
   it { should be_mode 400 }
 end
 
