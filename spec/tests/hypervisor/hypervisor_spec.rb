@@ -60,31 +60,8 @@ end
 # conditions needs to be met :
 #
 # * 'pm-utils', 'nova-common', 'nova-compute' packages needs to be installed
-# * service 'nova-compute' needs to be installed, running and enabled
 # * config file '/etc/nova/nova.conf' should match properties
 #
-
-describe package('pm-utils') do
-  it { should be_installed }
-end
-
-describe package('nova-common') do
-  it { should be_installed }
-end
-
-describe package('nova-compute') do
-  it { should be_installed }
-end
-
-describe service('nova-compute') do
-  it { should be_enabled }
-  it { should be_running }
-end
-
-describe service('ceilometer-agent-compute') do
-  it { should be_enabled }
-  it { should be_running }
-end
 
 describe file('/etc/nova/nova.conf') do
   it { should be_mode 640 }
@@ -93,30 +70,6 @@ describe file('/etc/nova/nova.conf') do
   its(:content) { should match /compute_driver=libvirt\.LibvirtDriver/ }
   its(:content) { should match /libvirt_type=#{property[:virt_type]}/ }
   its(:content) { should match /connection_type=libvirt/ }
-end
-
-#
-# nova::compute::hypervisor : Ensure the hypervisor installed correctly
-#
-# To ensure installation is correct the following
-# conditions needs to be met :
-#
-# * 'nova-compute-kvm' or 'nova-compute-qemu' is installed
-# * package 'libvirt-bin' is installed
-# * service 'libvirt-bin' is running and enabled
-#
-
-describe package("nova-compute-#{property[:virt_type]}") do
-  it { should be_installed }
-end
-
-describe package('libvirt-bin') do
-  it { should be_installed }
-end
-
-describe service('libvirt-bin') do
-  it { should be_enabled }
-  it { should be_running }
 end
 
 #

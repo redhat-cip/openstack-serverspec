@@ -22,18 +22,7 @@ require 'spec_helper'
 
 # TODO: check user presence command.return_exit_status
 
-# On the Galera master
-# describe process('mysql') do
-#   its(:args) { shoudl match /--new-cluster/ }
-# end
-
-
-describe package('mariadb-galera-server') do
-  it { should be_installed }
-end
-
 describe service('mysql') do
-  it { should be_enabled }
   it { should be_running }
 end
 
