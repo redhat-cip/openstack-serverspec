@@ -4,44 +4,8 @@ require 'spec_helper'
 # cloud::telemetry::server
 #
 
-describe package('ceilometer-api') do
-  it { should be_installed }
-end
-
-describe service('ceilometer-api') do
-  it { should be_enabled }
-  it { should be_running }
-end
-
 describe port(8777) do
   it { should be_listening.with('tcp') }
-end
-
-describe package('ceilometer-collector') do
-  it { should be_installed }
-end
-
-describe service('ceilometer-collector') do
-  it { should be_enabled }
-  it { should be_running }
-end
-
-describe package('ceilometer-alarm-evaluator') do
-  it { should be_installed }
-end
-
-describe service('ceilometer-alarm-evaluator') do
-  it { should be_enabled }
-  it { should be_running }
-end
-
-describe package('ceilometer-alarm-notifier') do
-  it { should be_installed }
-end
-
-describe service('ceilometer-alarm-notifier') do
-  it { should be_enabled }
-  it { should be_running }
 end
 
 describe user('ceilometer') do
@@ -69,10 +33,6 @@ describe file('/etc/ceilometer/ceilometer.conf') do
   its(:content) { should match /^notification_topics=notifications$/ }
   its(:content) { should match /^use_syslog=True$/ }
   its(:content) { should match /^syslog_log_facility=LOG_LOCAL0$/ }
-end
-
-describe package('ceilometer-common') do
-  it { should be_installed }
 end
 
 describe command("mongo \"#{property[:server_ip]}\":27017/ceilometer " \

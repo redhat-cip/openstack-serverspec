@@ -1,14 +1,5 @@
 require 'spec_helper'
 
-describe package('neutron-server') do
-  it { should be_installed }
-end
-
-describe service('neutron-server') do
-  it { should be_enabled }
-  it { should be_running }
-end
-
 describe port(9696) do
   it { should be_listening.with('tcp') }
 end
