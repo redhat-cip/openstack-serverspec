@@ -24,7 +24,7 @@ end
 
 describe file('/etc/ceph/ceph.client.cinder.keyring') do
   it { should be_grouped_into 'cephkeyring' }
-  it { should be_mode 400 }
+  it { should be_mode 440 }
 end
 
 #
