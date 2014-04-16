@@ -6,12 +6,6 @@ require 'spec_helper'
 # To ensure installation is correct the following
 # conditions needs to be met :
 #
-# * kernel module 'ndb' needs to be loaded
-#
-
-describe kernel_module('nbd') do
-  it { should be_loaded }
-end
 
 #
 # ssh : Ensure the ssh related files are created
