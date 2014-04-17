@@ -14,7 +14,7 @@ describe file('/etc/neutron/plugins/ml2/ml2_conf.ini') do
   its(:content) { should match /^enable_tunneling ?= ?True$/ }
   its(:content) { should match /^integration_bridge ?= ?br-int$/ }
   its(:content) { should match /^bridge_mappings ?= ?physnet1:br-eth1$/ }
-  its(:content) { should match /^firewall_driver ?= ?neutron.agent.linux.iptables_firewall~
+  its(:content) { should match /^firewall_driver ?= ?neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver$/ }
 end
 
 describe port(9696) do
