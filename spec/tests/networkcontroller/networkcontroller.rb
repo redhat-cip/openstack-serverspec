@@ -1,8 +1,6 @@
 require 'spec_helper'
 
-describe port(9696) do
-  it { should be_listening.with('tcp') }
-end
+# Neutron Server
 
 describe file('/etc/neutron/plugins/ml2/ml2_conf.ini') do
   its(:content) { should match /^tunnel_types ?= ?gre$/ }
@@ -16,9 +14,9 @@ describe file('/etc/neutron/plugins/ml2/ml2_conf.ini') do
   its(:content) { should match /^enable_tunneling ?= ?True$/ }
   its(:content) { should match /^integration_bridge ?= ?br-int$/ }
   its(:content) { should match /^bridge_mappings ?= ?physnet1:br-eth1$/ }
-  its(:content) { should match /^firewall_driver ?= ?neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver$/ }
+  its(:content) { should match /^firewall_driver ?= ?neutron.agent.linux.iptables_firewall~
 end
 
-describe file('/etc/neutron/dhcp_agent.ini') do
-  its(:content) { should match /^enable_isolated_metadata ?= ?True$/ }
+describe port(9696) do
+  it { should be_listening.with('tcp') }
 end
