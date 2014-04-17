@@ -18,3 +18,7 @@ describe file('/etc/neutron/plugins/ml2/ml2_conf.ini') do
   its(:content) { should match /^bridge_mappings ?= ?physnet1:br-eth1$/ }
   its(:content) { should match /^firewall_driver ?= ?neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver$/ }
 end
+
+describe file('/etc/neutron/dhcp_agent.ini') do
+  its(:content) { should match /^enable_isolated_metadata ?= ?True$/ }
+end
