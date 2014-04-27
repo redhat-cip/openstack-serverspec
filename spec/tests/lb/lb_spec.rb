@@ -8,7 +8,6 @@ describe package('keepalived') do
 end
 
 describe service('keepalived') do
-  it { should be_enabled }
   it { should be_running }
 end
 
@@ -35,11 +34,6 @@ end
 
 describe package('haproxy') do
   it { should be_installed }
-end
-
-
-describe service('haproxy') do
-  it { should be_enabled }
 end
 
 describe file('/etc/logrotate.d/haproxy') do
