@@ -49,87 +49,88 @@ describe file('/etc/logrotate.d/haproxy') do
   it { should be_mode 644 }
   it { should be_owned_by 'root' }
 end
+
 # Monitor
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:9300") }
+  it { should contain(/bind .*:9300/) }
 end
 
 # ceilometer_api_cluster
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:8777") }
+  it { should contain(/bind .*:8777/) }
 end
 
 # cinder_api_cluster
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:8776") }
+  it { should contain(/bind .*:8776/) }
 end
 
 # ec2_api_cluster
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:8773") }
+  it { should contain(/bind .*:8773/) }
 end
 
 # galera_cluster
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:3306") }
+  it { should contain(/bind .*:3306/) }
 end
 
 # glance_api_cluster
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:9292") }
+  it { should contain(/bind .*:9292/) }
 end
 
 # heat_api_cfn_cluster
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:8000") }
+  it { should contain(/bind .*:8000/) }
 end
 
 # health_api_cloudwatch_cluster
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:8003") }
+  it { should contain(/bind .*:8003/) }
 end
 
 # heat_api_cluster
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:8004") }
+  it { should contain(/bind .*:8004/) }
 end
 
 # horizon_cluster
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:80") }
+  it { should contain(/bind .*:80/) }
 end
 
 # keystone_api_admin_cluster
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:35357") }
+  it { should contain(/bind .*:35357/) }
 end
 
 # keystone_api_cluster
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:5000") }
+  it { should contain(/bind .*:5000/) }
 end
 
 # metadata_api_cluster
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:8775") }
+  it { should contain(/bind .*:8775/) }
 end
 
 # neutron_api_cluster
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:9696") }
+  it { should contain(/bind .*:9696/) }
 end
 
 # nova_api_cluster
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:8774") }
+  it { should contain(/bind .*:8774/) }
 end
 
 # spice_cluster
 describe file('/etc/haproxy/haproxy.cfg') do
-  its(:content) { should contain("bind #{property[:vip_public]}:6082") }
+  it { should contain(/bind .*:6082/) }
 end
 
 # swift_api_cluster
 #describe port(8080) do
-#  it { should be_listening.with('tcp') }
+#  it { should be_listening.with('tcp/) }
 #end
