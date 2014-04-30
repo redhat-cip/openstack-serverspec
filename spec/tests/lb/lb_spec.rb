@@ -50,83 +50,83 @@ describe file('/etc/logrotate.d/haproxy') do
   it { should be_owned_by 'root' }
 end
 # Monitor
-describe port(9300) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:9300/ }
 end
 
 # ceilometer_api_cluster
-describe port(8777) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:8777/ }
 end
 
 # cinder_api_cluster
-describe port(8776) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:8776/ }
 end
 
 # ec2_api_cluster
-describe port(8773) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:8773/ }
 end
 
 # galera_cluster
-describe port(3306) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:3306/ }
 end
 
 # glance_api_cluster
-describe port(9292) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:9292/ }
 end
 
 # heat_api_cfn_cluster
-describe port(8000) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:8000/ }
 end
 
 # health_api_cloudwatch_cluster
-describe port(8003) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:8003/ }
 end
 
 # heat_api_cluster
-describe port(8004) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:8004/ }
 end
 
 # horizon_cluster
-describe port(80) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:80/ }
 end
 
 # keystone_api_admin_cluster
-describe port(35357) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:35357/ }
 end
 
 # keystone_api_cluster
-describe port(5000) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:5000/ }
 end
 
 # metadata_api_cluster
-describe port(8775) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:8775/ }
 end
 
 # neutron_api_cluster
-describe port(9696) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:9696/ }
 end
 
 # nova_api_cluster
-describe port(8774) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:8774/ }
 end
 
 # spice_cluster
-describe port(6082) do
-  it { should be_listening.with('tcp') }
+describe file('/etc/haproxy/haproxy.cfg') do
+  its(:content) { should match /bind #{property[:vip_public]}:6082/ }
 end
 
 # swift_api_cluster
