@@ -62,7 +62,7 @@ describe file('/etc/nova/nova.conf') do
   it { should be_owned_by 'nova' }
 
   its(:content) { should match /compute_driver=libvirt\.LibvirtDriver/ }
-  its(:content) { should match /libvirt_type=#{property[:virt_type]}/ }
+  its(:content) { should match /virt_type=#{property[:virt_type]}/ }
 end
 
 #
