@@ -63,7 +63,6 @@ describe file('/etc/nova/nova.conf') do
 
   its(:content) { should match /compute_driver=libvirt\.LibvirtDriver/ }
   its(:content) { should match /libvirt_type=#{property[:virt_type]}/ }
-  its(:content) { should match /connection_type=libvirt/ }
 end
 
 #
