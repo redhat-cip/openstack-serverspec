@@ -33,3 +33,27 @@ end
 describe port(4567) do
   it { should be_listening.with('tcp') }
 end
+
+describe command('mysql glance -e "show tables"') do
+  it { should return_exit_status 0 }
+end
+
+describe command('mysql nova -e "show tables"') do
+  it { should return_exit_status 0 }
+end
+
+describe command('mysql cinder -e "show tables"') do
+  it { should return_exit_status 0 }
+end
+
+describe command('mysql heat -e "show tables"') do
+  it { should return_exit_status 0 }
+end
+
+describe command('mysql neutron -e "show tables"') do
+  it { should return_exit_status 0 }
+end
+
+describe command('mysql keystone -e "show tables"') do
+  it { should return_exit_status 0 }
+end
