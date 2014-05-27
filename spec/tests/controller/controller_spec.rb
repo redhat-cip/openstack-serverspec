@@ -22,6 +22,7 @@ end
 
 describe file('/etc/nova/nova.conf') do
   it { should contain "servicegroup_driver=mc" }
+  it { should contain "[osapi_v3]" }
 end
 
 describe port(6080) do
