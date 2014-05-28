@@ -18,7 +18,7 @@ describe file('/etc/neutron/plugins/ml2/ml2_conf.ini') do
 end
 
 describe file('/etc/neutron/neutron.conf') do
-  it { should contain "nova_admin_username=nova" }
+  it { should contain "nova_admin_username =nova" }
 end
 
 describe port(9696) do
