@@ -34,26 +34,26 @@ describe port(4567) do
   it { should be_listening.with('tcp') }
 end
 
-describe command('mysql glance -e "show tables"') do
+describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep nova") do
   it { should return_exit_status 0 }
 end
 
-describe command('mysql nova -e "show tables"') do
+describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep cinder") do
   it { should return_exit_status 0 }
 end
 
-describe command('mysql cinder -e "show tables"') do
+describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep keystone") do
   it { should return_exit_status 0 }
 end
 
-describe command('mysql heat -e "show tables"') do
+describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep glance") do
   it { should return_exit_status 0 }
 end
 
-describe command('mysql neutron -e "show tables"') do
+describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep heat") do
   it { should return_exit_status 0 }
 end
 
-describe command('mysql keystone -e "show tables"') do
+describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep neutron") do
   it { should return_exit_status 0 }
 end
