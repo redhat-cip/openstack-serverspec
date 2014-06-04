@@ -12,10 +12,6 @@ describe port(9191) do
   it { should be_listening.with('tcp') }
 end
 
-describe package('python-ceph') do
-    it { should be_installed }
-end
-
 describe file('/etc/glance/glance-api.conf') do
   its(:content) { should match /^default_store ?= ?rbd$/ }
   its(:content) { should match /^rbd_store_pool ?= ?images$/ }
