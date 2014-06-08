@@ -6,7 +6,12 @@ require 'spec_helper'
 #
 #################################
 
-describe service('swift-proxy') do
-  it { should be_enabled }
-  it { should be_running }
+describe file('/etc/swift/proxy-server.conf') do
+  it { should be_owned_by 'swift' }
+  it { should be_grouped_into 'swift' }
+  it { should be_mode 660 }
+end
+
+describe port(8080) do
+  it { should be_listening.with('tcp') }
 end
