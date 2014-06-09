@@ -16,18 +16,15 @@ end
 
 describe file('/etc/swift') do
   it { should be_directory }
-  it { should be_owned_by 'swift' }
   it { should be_grouped_into 'swift' }
 end
 
 describe file('/var/lib/swift') do
   it { should be_directory }
-  it { should be_owned_by 'swift' }
   it { should be_grouped_into 'swift' }
 end
 
 describe file('/var/run/swift') do
   it { should be_directory }
-  it { should be_owned_by 'swift' }
   it { should be_grouped_into 'swift' }
 end
