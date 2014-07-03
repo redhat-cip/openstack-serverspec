@@ -8,7 +8,7 @@ describe package('td-agent') do
   it { should be_installed }
 end
 
-describe package('fluent-elasticsearch-plugin') do
+describe package('fluent-plugin-elasticsearch') do
   it { should be_installed.by('gem') }
 end
 
