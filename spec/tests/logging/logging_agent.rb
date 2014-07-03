@@ -15,3 +15,9 @@ describe file('/etc/rsyslog.d/client.conf') do
 
   its(:content) { should match /\*\.\* @#{property[:syslog_server]}:#{property[:syslog_port]};RSYSLOG_ForwardFormat/ }
 end
+
+describe file('/var/db/td-agent') do
+  it { should be_directory }
+  it { should be_owned_by 'td-agent' }
+  it { should be_grouped_into 'td-agent' }
+end
