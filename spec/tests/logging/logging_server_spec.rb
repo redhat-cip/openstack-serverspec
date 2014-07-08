@@ -8,10 +8,6 @@ describe package('td-agent') do
   it { should be_installed }
 end
 
-describe package('fluent-plugin-elasticsearch') do
-  it { should be_installed.by('gem') }
-end
-
 describe file('/var/db/td-agent') do
   it { should be_directory }
   it { should be_owned_by 'td-agent' }
