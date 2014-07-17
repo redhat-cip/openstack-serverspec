@@ -10,7 +10,7 @@ include Serverspec::Helper::Properties
 properties = YAML.load_file('arch.yml')
 
 RSpec.configure do |c|
-    c.host  = c.exclusion_filter()[:host]
+    c.host  = ENV['TARGET_HOST']
     set_property properties[c.host]
     options = Net::SSH::Config.for(c.host)
     user = 'root'
