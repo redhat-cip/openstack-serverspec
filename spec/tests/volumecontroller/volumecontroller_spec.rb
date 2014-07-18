@@ -17,14 +17,20 @@ end
 #
 
 describe file('/etc/cinder/cinder.conf') do
-  its(:content) { should match /^rbd_pool=volumes$/ }
-  its(:content) { should match /^rbd_user=cinder$/ }
-  its(:content) { should match /^volume_backend_name=ceph$/ }
+  if property[:cinder_backend] == 'rbd'
+    its(:content) { should match /^rbd_pool=volumes$/ }
+    its(:content) { should match /^rbd_user=cinder$/ }
+    its(:content) { should match /^volume_backend_name=ceph$/ }
+  elsif property[:cinder_backend] == :iscsi
+    its(:content) { should match /^iscsi_helper = tgtadm$/ }
+  end
 end
 
-describe file('/etc/ceph/ceph.client.cinder.keyring') do
-  it { should be_grouped_into 'cephkeyring' }
-  it { should be_mode 440 }
+if property[:cinder_backend] == 'rbd'
+  describe file('/etc/ceph/ceph.client.cinder.keyring') do
+    it { should be_grouped_into 'cephkeyring' }
+    it { should be_mode 440 }
+  end
 end
 
 #
