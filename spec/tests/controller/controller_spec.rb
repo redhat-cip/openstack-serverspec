@@ -25,6 +25,12 @@ describe file('/etc/nova/nova.conf') do
   it { should contain "vif_driver=nova.virt.libvirt.vif.LibvirtGenericVIFDriver" }
 end
 
-describe port(6082) do
-  it { should be_listening.with('tcp') }
+if property[:vnc_type] == 'spice'
+  describe port(6082) do
+    it { should be_listening.with('tcp') }
+  end
+elsif property[:vnc_type] == 'novnc'
+  describe port(6080) do
+    it { should be_listening.with('tcp') }
+  end
 end
