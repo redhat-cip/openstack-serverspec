@@ -71,8 +71,10 @@ end
 # cloud::compute
 #
 
-describe file('/etc/nova/nova.conf') do
-  its(:content) { should match /^resume_guests_state_on_host_boot=True$/ }
+if property[:resume_guest_state_on_host_boot]
+  describe file('/etc/nova/nova.conf') do
+    its(:content) { should match /^resume_guests_state_on_host_boot=True$/ }
+  end
 end
 
 # check if QEMU supports RBD
