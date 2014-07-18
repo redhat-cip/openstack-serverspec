@@ -3,17 +3,24 @@ require 'spec_helper'
 # Neutron Server
 
 describe file('/etc/neutron/plugins/ml2/ml2_conf.ini') do
-  its(:content) { should match /^tunnel_types ?= ?gre$/ }
-  its(:content) { should match /^type_drivers ?= ?gre,vlan,flat$/ }
-  its(:content) { should match /^network_vlan_ranges = ?physnet1:1000:2999$/ }
-  its(:content) { should match /^tunnel_id_ranges ?= ?1:10000$/ }
-  its(:content) { should match /^mechanism_drivers ?= ?openvswitch,l2population$/ }
-  its(:content) { should match /^l2_population ?= ?True$/ }
-  its(:content) { should match /^polling_interval ?= ?15$/ }
-  its(:content) { should match /^local_ip ?= ?#{property[:server_ip]}$/ }
+  # does this do anything?
+  #its(:content) { should match /^tunnel_types ?= ?gre$/ }
+  its(:content) { should match /^type_drivers ?= ?#{property[:ml2_type_drivers]}$/ }
+  if property[:ml2_type_drivers].split(',').include?('vlan')
+    its(:content) { should match /^network_vlan_ranges = ?#{property[:network_vlan_ranges]}$/ }
+  end
+  if property[:ml2_type_drivers].split(',').include?('gre')
+    its(:content) { should match /^tunnel_id_ranges ?= ?#{property[:tunnel_id_ranges]}$/ }
+  end
+  its(:content) { should match /^mechanism_drivers ?= ?#{property[:ml2_mechanism_drivers]}$/ }
+  if property[:ml2_mechanism_drivers].split(',').include?('l2population')
+    its(:content) { should match /^l2_population ?= ?True$/ }
+  end
+  its(:content) { should match /^polling_interval ?= ?#{property[:ml2_agent_polling_interval]}$/ }
+  its(:content) { should match /^local_ip ?= ?#{property[:gre_local_ip]}$/ }
   its(:content) { should match /^enable_tunneling ?= ?True$/ }
   its(:content) { should match /^integration_bridge ?= ?br-int$/ }
-  its(:content) { should match /^bridge_mappings ?= ?public:br-pub$/ }
+  its(:content) { should match /^bridge_mappings ?= ?#{property[:bridge_mappings]}$/ }
   its(:content) { should match /^firewall_driver ?= ?neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver$/ }
 end
 
