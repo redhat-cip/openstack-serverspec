@@ -8,8 +8,10 @@ describe port(8776) do
   it { should be_listening.with('tcp') }
 end
 
-describe file('/etc/cinder/cinder.conf') do
-  it { should contain 'glance_request_timeout=10' }
+if property[:cinder_glance]
+  describe file('/etc/cinder/cinder.conf') do
+    it { should contain 'glance_request_timeout=10' }
+  end
 end
 
 #
