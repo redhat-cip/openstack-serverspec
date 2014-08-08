@@ -22,10 +22,6 @@ require 'spec_helper'
 
 # TODO: check user presence command.return_exit_status
 
-describe service('mysql') do
-  it { should be_running }
-end
-
 describe port(3306) do
   it { should be_listening.with('tcp') }
 end
