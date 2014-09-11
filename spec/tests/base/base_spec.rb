@@ -12,3 +12,12 @@ end
 describe command("nslookup #{property[:vip_public]}") do
   it { should return_exit_status 0 }
 end
+
+# test if NTP is working
+# using 'ntpstat' command
+# exit status 0 - Clock is synchronised.
+# exit status 1 - Clock is not synchronised.
+# exit status 2 - If clock state is indeterminant, for example if ntpd is not contactable
+describe command("ntpstat") do
+  it { should return_exit_status 0 }
+end
