@@ -9,7 +9,7 @@ describe port(22) do
 end
 
 # test if DNS is working
-describe command("dig #{property[:vip_internal_fqdn]}") do
+describe command("timeout 1 dig #{property[:vip_internal_fqdn]}") do
   it { should return_exit_status 0 }
 end
 
