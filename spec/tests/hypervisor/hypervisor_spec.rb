@@ -22,28 +22,30 @@ require 'spec_helper'
 # * file '/var/lib/nova/.ssh/config' must be present
 #
 
-describe file('/var/lib/nova/.ssh') do
-  it { should be_mode 700 }
-  it { should be_owned_by 'nova' }
-  it { should be_grouped_into 'nova' }
-end
+if property[:nova_compute_ssh]
+  describe file('/var/lib/nova/.ssh') do
+    it { should be_mode 700 }
+    it { should be_owned_by 'nova' }
+    it { should be_grouped_into 'nova' }
+  end
 
-describe file('/var/lib/nova/.ssh/id_rsa') do
-  it { should be_mode 600 }
-  it { should be_owned_by 'nova' }
-  it { should be_grouped_into 'nova' }
-end
+  describe file('/var/lib/nova/.ssh/id_rsa') do
+    it { should be_mode 600 }
+    it { should be_owned_by 'nova' }
+    it { should be_grouped_into 'nova' }
+  end
 
-describe file('/var/lib/nova/.ssh/authorized_keys') do
-  it { should be_mode 600 }
-  it { should be_owned_by 'nova' }
-  it { should be_grouped_into 'nova' }
-end
+  describe file('/var/lib/nova/.ssh/authorized_keys') do
+    it { should be_mode 600 }
+    it { should be_owned_by 'nova' }
+    it { should be_grouped_into 'nova' }
+  end
 
-describe file('/var/lib/nova/.ssh/config') do
-  it { should be_mode 600 }
-  it { should be_owned_by 'nova' }
-  it { should be_grouped_into 'nova' }
+  describe file('/var/lib/nova/.ssh/config') do
+    it { should be_mode 600 }
+    it { should be_owned_by 'nova' }
+    it { should be_grouped_into 'nova' }
+  end
 end
 
 #
@@ -69,8 +71,10 @@ end
 # cloud::compute
 #
 
-describe file('/etc/nova/nova.conf') do
-  its(:content) { should match /^resume_guests_state_on_host_boot=True$/ }
+if property[:resume_guest_state_on_host_boot]
+  describe file('/etc/nova/nova.conf') do
+    its(:content) { should match /^resume_guests_state_on_host_boot=True$/ }
+  end
 end
 
 # check if QEMU supports RBD
