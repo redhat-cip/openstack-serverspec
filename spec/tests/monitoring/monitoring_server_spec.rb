@@ -13,8 +13,8 @@ describe port(4567) do
   it { should be_listening.with('tcp') }
 end
 
-# sensu-dasbhoard
-describe port(8383) do
+# uchiwa (sensu-dasbhoard)
+describe port(3000) do
   it { should be_listening.with('tcp') }
 end
 
