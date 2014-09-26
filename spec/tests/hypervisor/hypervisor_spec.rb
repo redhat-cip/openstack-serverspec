@@ -74,6 +74,6 @@ describe file('/etc/nova/nova.conf') do
 end
 
 # check if QEMU supports RBD (when Nova is using RBD)
-describe command("if grep -q images_type=rbd; then qemu-img | grep rbd; fi") do
+describe command("if grep -q images_type=rbd /etc/nova/nova.conf; then qemu-img | grep rbd; fi") do
   it { should return_exit_status 0 }
 end

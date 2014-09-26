@@ -17,7 +17,7 @@ end
 #
 
 # when ceph is enabled, ensure we have the ceph keyring installed
-describe command('if grep -q volume_backend_name=ceph /etc/cinder.conf; then test -f /etc/ceph/ceph.client.cinder.keyring; fi') do
+describe command("bash -c 'if grep -q volume_backend_name=ceph /etc/cinder/cinder.conf; then test -f /etc/ceph/ceph.client.cinder.keyring; fi'") do
   it { should return_exit_status 0 }
 end
 

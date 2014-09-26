@@ -13,7 +13,7 @@ describe port(9191) do
 end
 
 # when ceph is enabled, ensure we have the ceph keyring installed
-describe command("if grep -q 'default_store = rbd' /etc/glance/glance-api.conf; then test -f /etc/ceph/ceph.client.glance.keyring; fi") do
+describe command("bash -c \"if grep -q 'default_store = rbd' /etc/glance/glance-api.conf; then test -f /etc/ceph/ceph.client.glance.keyring; fi\"") do
   it { should return_exit_status 0 }
 end
 
