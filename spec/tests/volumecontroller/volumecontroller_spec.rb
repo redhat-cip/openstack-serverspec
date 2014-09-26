@@ -16,15 +16,9 @@ end
 # cloud::volume::storage
 #
 
-describe file('/etc/cinder/cinder.conf') do
-  its(:content) { should match /^rbd_pool=volumes$/ }
-  its(:content) { should match /^rbd_user=cinder$/ }
-  its(:content) { should match /^volume_backend_name=ceph$/ }
-end
-
-describe file('/etc/ceph/ceph.client.cinder.keyring') do
-  it { should be_grouped_into 'cephkeyring' }
-  it { should be_mode 440 }
+# when ceph is enabled, ensure we have the ceph keyring installed
+describe command('if grep -q volume_backend_name=ceph /etc/cinder.conf; then test -f /etc/ceph/ceph.client.cinder.keyring; fi') do
+  it { should return_exit_status 0 }
 end
 
 #

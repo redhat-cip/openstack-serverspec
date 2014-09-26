@@ -73,7 +73,7 @@ describe file('/etc/nova/nova.conf') do
   its(:content) { should match /^resume_guests_state_on_host_boot=True$/ }
 end
 
-# check if QEMU supports RBD
-describe command("qemu-img | grep rbd") do
+# check if QEMU supports RBD (when Nova is using RBD)
+describe command("if grep -q images_type=rbd; then qemu-img | grep rbd; fi") do
   it { should return_exit_status 0 }
 end

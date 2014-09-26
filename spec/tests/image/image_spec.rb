@@ -12,17 +12,9 @@ describe port(9191) do
   it { should be_listening.with('tcp') }
 end
 
-describe file('/etc/glance/glance-api.conf') do
-  its(:content) { should match /^default_store ?= ?rbd$/ }
-  its(:content) { should match /^rbd_store_pool ?= ?images$/ }
-  its(:content) { should match /^rbd_store_user ?= ?glance$/ }
-  its(:content) { should match /^rbd_store_ceph_conf ?= ?\/etc\/ceph\/ceph.conf$/ }
-end
-
-describe file('/etc/ceph/ceph.client.glance.keyring') do
-  it { should be_owned_by 'glance' }
-  it { should be_grouped_into 'glance' }
-  it { should be_mode 400 }
+# when ceph is enabled, ensure we have the ceph keyring installed
+describe command("if grep -q 'default_store = rbd' /etc/glance/glance-api.conf; then test -f /etc/ceph/ceph.client.glance.keyring; fi") do
+  it { should return_exit_status 0 }
 end
 
 describe cron do
