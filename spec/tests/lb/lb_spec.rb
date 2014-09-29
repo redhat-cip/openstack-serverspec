@@ -37,11 +37,9 @@ describe package('haproxy') do
 end
 
 describe file('/etc/logrotate.d/haproxy') do
-  its(:content) { should match /rotate 7/ }
   its(:content) { should match /daily/ }
   its(:content) { should match /missingok/ }
   its(:content) { should match /notifempty/ }
-  its(:content) { should match /delaycompress/ }
   its(:content) { should match /compress/ }
   its(:content) { should match /postrotate/ }
   its(:content) { should match /endscript/ }
