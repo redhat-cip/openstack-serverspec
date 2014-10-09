@@ -7,9 +7,13 @@ describe package('keepalived') do
   it { should be_installed }
 end
 
-describe service('keepalived') do
-  it { should be_running }
-end
+# (spredzy) TODO: chkconfig is not
+# available anymore for systemd
+# aware daemon. Upgrade to
+# serverspec 2.0 needs to be planned
+#describe service('keepalived') do
+#  it { should be_running }
+#end
 
 describe file('/etc/keepalived/keepalived.conf') do
   its(:content) { should match /state     #{property[:keepalived_state]}/ }

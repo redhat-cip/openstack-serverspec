@@ -23,10 +23,14 @@ describe package('rabbitmq-server') do
   it { should be_installed }
 end
 
-describe service('rabbitmq-server') do
-  it { should be_enabled }
-  it { should be_running }
-end
+# (spredzy) TODO: chkconfig is not
+# available anymore for systemd
+# aware daemon. Upgrade to
+# serverspec 2.0 needs to be planned
+#describe service('rabbitmq-server') do
+#  it { should be_enabled }
+#  it { should be_running }
+#end
 
 # rabbitmq (epmd)
 describe port(4369) do
