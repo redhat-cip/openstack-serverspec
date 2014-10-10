@@ -28,8 +28,18 @@ describe file('/etc/keepalived/keepalived.conf') do
   its(:content) { should match /^vrrp_instance 1 {/ }
   it { should contain('virtual_router_id 1').from(/^vrrp_instance/).to(/^}/) }
   its(:content) { should match /interface/ }
-  its(:content) { should match /notify_master "\/etc\/init.d\/haproxy start"/ }
-  its(:content) { should match /notify_backup "\/etc\/init.d\/haproxy stop"/ }
+end
+
+if os[:family] == 'redhat'
+  describe file('/etc/keepalived/keepalived.conf') do
+    its(:content) { should match /notify_master "\/usr\/bin\/systemctl start haproxy"/ }
+    its(:content) { should match /notify_backup "\/usr\/bin\/systemctl stop haproxy"/ }
+  end
+elsif ['debian', 'ubuntu'].include?(os[:family])
+  describe file('/etc/keepalived/keepalived.conf') do
+    its(:content) { should match /notify_master "\/etc\/init.d\/haproxy start"/ }
+    its(:content) { should match /notify_backup "\/etc\/init.d\/haproxy stop"/ }
+  end
 end
 
 #
