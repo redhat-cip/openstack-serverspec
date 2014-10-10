@@ -35,7 +35,7 @@ if os[:family] == 'redhat'
     its(:content) { should match /notify_master "\/usr\/bin\/systemctl start haproxy"/ }
     its(:content) { should match /notify_backup "\/usr\/bin\/systemctl stop haproxy"/ }
   end
-elsif ['debian', 'ubuntu'].include?(os[:family])
+elsif os[:family] == 'debian'
   describe file('/etc/keepalived/keepalived.conf') do
     its(:content) { should match /notify_master "\/etc\/init.d\/haproxy start"/ }
     its(:content) { should match /notify_backup "\/etc\/init.d\/haproxy stop"/ }
