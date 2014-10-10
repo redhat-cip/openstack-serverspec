@@ -30,18 +30,6 @@ describe file('/etc/keepalived/keepalived.conf') do
   its(:content) { should match /interface/ }
 end
 
-if os[:family] == 'redhat'
-  describe file('/etc/keepalived/keepalived.conf') do
-    its(:content) { should match /notify_master "\/usr\/bin\/systemctl start haproxy"/ }
-    its(:content) { should match /notify_backup "\/usr\/bin\/systemctl stop haproxy"/ }
-  end
-elsif os[:family] == 'debian'
-  describe file('/etc/keepalived/keepalived.conf') do
-    its(:content) { should match /notify_master "\/etc\/init.d\/haproxy start"/ }
-    its(:content) { should match /notify_backup "\/etc\/init.d\/haproxy stop"/ }
-  end
-end
-
 #
 # HAProxy
 #
