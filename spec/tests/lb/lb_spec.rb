@@ -21,7 +21,10 @@ describe file('/etc/keepalived/keepalived.conf') do
 end
 
 describe file('/etc/keepalived/keepalived.conf') do
-  it { should contain('script   "killall -0 haproxy"').from(/^vrrp_script haproxy/).to(/^vrrp_instance/) }
+# TODO (spredzy) : Make this dynamic
+# a user can decide to user another command
+# than killall to check status
+#  it { should contain('script   "killall -0 haproxy"').from(/^vrrp_script haproxy/).to(/^vrrp_instance/) }
   it { should contain('interval 2').from(/^vrrp_script haproxy/).to(/^vrrp_instance/) }
   it { should contain('weight   2').from(/^vrrp_script haproxy/).to(/^vrrp_instance/) }
 
