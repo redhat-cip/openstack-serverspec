@@ -1,1 +1,1 @@
-require_relative '../tests/install/puppetmaster_spec.rb'
+require_relative '../tests/install/puppet_master_spec.rb'
