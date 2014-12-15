@@ -5,5 +5,5 @@ require 'spec_helper'
 #
 
 describe port(8140) do
-  it { should be_listening.with('tcp') }
+  it { should be_listening.with('tcp6') }
 end
