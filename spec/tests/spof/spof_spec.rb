@@ -4,7 +4,7 @@ require 'spec_helper'
 # cloud::spof
 #
 
-describe command("crm_mon -1 | grep ceilometer | grep Started") do
+describe command("crm_mon -1 | grep ceilometer | grep -q Started") do
   it { should return_exit_status 0 }
 end
 

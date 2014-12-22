@@ -10,10 +10,10 @@ describe kernel_module('openvswitch') do
   it { should be_loaded }
 end
 
-describe command('lsmod | grep gre') do
+describe command('lsmod | grep -q gre') do
     it { should return_exit_status 0 }
 end
 
-describe command('ovs-vsctl show | grep br-int') do
+describe command('ovs-vsctl show | grep -q br-int') do
     it { should return_exit_status 0 }
 end

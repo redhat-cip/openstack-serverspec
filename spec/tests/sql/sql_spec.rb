@@ -30,26 +30,26 @@ describe port(4567) do
   it { should be_listening.with('tcp') }
 end
 
-describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep nova") do
+describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep -q nova") do
   it { should return_exit_status 0 }
 end
 
-describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep cinder") do
+describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep -q cinder") do
   it { should return_exit_status 0 }
 end
 
-describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep keystone") do
+describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep -q keystone") do
   it { should return_exit_status 0 }
 end
 
-describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep glance") do
+describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep -q glance") do
   it { should return_exit_status 0 }
 end
 
-describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep heat") do
+describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep -q heat") do
   it { should return_exit_status 0 }
 end
 
-describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep neutron") do
+describe command("mysql --defaults-file=/root/.my.cnf -e 'show databases;' | grep -q neutron") do
   it { should return_exit_status 0 }
 end
