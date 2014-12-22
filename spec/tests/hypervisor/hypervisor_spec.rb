@@ -77,3 +77,8 @@ end
 describe command("bash -c 'if grep -q images_type=rbd /etc/nova/nova.conf; then qemu-img | grep rbd; fi'") do
   it { should return_exit_status 0 }
 end
+
+# test if /etc/ceph/secret.xml is present when using RBD
+describe command("bash -c 'if grep -q images_type=rbd /etc/nova/nova.conf; then test -f /etc/ceph/secret.xml; fi'") do
+  it { should return_exit_status 0 }
+end
