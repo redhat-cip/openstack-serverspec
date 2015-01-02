@@ -14,11 +14,6 @@ describe group('swift') do
   it { should exist }
 end
 
-describe file('/etc/swift/proxy-server.conf') do
-  it { should be_grouped_into 'swift' }
-  it { should be_owned_by 'swift' }
-end
-
 describe file('/var/lib/swift') do
   it { should be_directory }
   it { should be_grouped_into 'swift' }
