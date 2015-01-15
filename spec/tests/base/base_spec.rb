@@ -12,15 +12,3 @@ end
 describe command("timeout 1 dig #{property[:vip_internal_fqdn]}") do
   it { should return_exit_status 0 }
 end
-
-describe command('edeploy role') do
-  it { should return_exit_status 0 }
-end
-
-describe command('edeploy profile') do
-  it { should return_exit_status 0 }
-end
-
-describe command('edeploy version') do
-  it { should return_exit_status 0 }
-end
