@@ -130,10 +130,6 @@ describe file('/etc/haproxy/haproxy.cfg') do
   it { should contain(/bind .*:8774/) }
 end
 
-# spice_cluster
-describe file('/etc/haproxy/haproxy.cfg') do
-  it { should contain(/bind .*:6082/) }
-end
 
 # swift_api_cluster
 #describe port(8080) do
