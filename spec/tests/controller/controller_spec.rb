@@ -23,7 +23,3 @@ end
 describe file('/etc/nova/nova.conf') do
   it { should contain "servicegroup_driver=mc" }
 end
-
-describe port(6082) do
-  it { should be_listening.with('tcp') }
-end
