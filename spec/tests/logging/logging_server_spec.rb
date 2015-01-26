@@ -13,3 +13,7 @@ describe file('/var/db/td-agent') do
   it { should be_owned_by 'td-agent' }
   it { should be_grouped_into 'td-agent' }
 end
+
+describe process('td-agent') do
+  it { should be_running }
+end
