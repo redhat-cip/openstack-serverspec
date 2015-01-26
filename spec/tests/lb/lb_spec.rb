@@ -48,10 +48,8 @@ describe file('/etc/logrotate.d/haproxy') do
   its(:content) { should match /notifempty/ }
   its(:content) { should match /delaycompress/ }
   its(:content) { should match /compress/ }
-  its(:content) { should match /postrotate/ }
-  its(:content) { should match /endscript/ }
 
-  it { should be_mode 644 }
+  it { should be_mode 444 }
   it { should be_owned_by 'root' }
 end
 
