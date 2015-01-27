@@ -17,3 +17,11 @@ end
 describe port(3000) do
   it { should be_listening.with('tcp') }
 end
+
+describe process('sensu-api') do
+  it { should be_running }
+end
+
+describe process('sensu-server') do
+  it { should be_running }
+end

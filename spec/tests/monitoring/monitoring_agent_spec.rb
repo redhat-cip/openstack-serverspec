@@ -24,5 +24,8 @@ describe file('/etc/sensu/conf.d/rabbit.json') do
     should match /"host": #{property[:rabbit_host]}/
     should match /"password": #{property[:rabbit_password]}/
   }
+end
 
+describe process('sensu-client') do
+  it { should be_running }
 end
