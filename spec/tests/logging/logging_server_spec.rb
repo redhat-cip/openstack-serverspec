@@ -17,3 +17,7 @@ end
 describe process('td-agent') do
   it { should be_running }
 end
+
+describe port(8300) do
+  it { should be_listening.with('tcp') }
+end
