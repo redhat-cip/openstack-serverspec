@@ -18,6 +18,18 @@ describe process('td-agent') do
   it { should be_running }
 end
 
+# Kibana
+#
 describe port(8300) do
+  it { should be_listening.with('tcp') }
+end
+
+# ElasticSearch
+#
+describe port(9200) do
+  it { should be_listening.with('tcp') }
+end
+
+describe port(9300) do
   it { should be_listening.with('tcp') }
 end
