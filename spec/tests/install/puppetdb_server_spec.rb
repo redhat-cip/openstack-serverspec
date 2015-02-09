@@ -21,3 +21,9 @@ end
 describe port(5432) do
   it { should be_listening }
 end
+
+describe file('/etc/puppet/ssl/puppetdb.pem') do
+  it { should be_mode 500 }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+end
