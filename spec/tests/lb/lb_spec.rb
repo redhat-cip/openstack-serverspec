@@ -55,7 +55,7 @@ end
 
 # Monitor
 describe file('/etc/haproxy/haproxy.cfg') do
-  it { should contain(/bind .*:9300/) }
+  it { should contain(/bind .*:10300/) }
 end
 
 # ceilometer_api_cluster
