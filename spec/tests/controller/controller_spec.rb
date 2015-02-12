@@ -20,6 +20,11 @@ describe port(8775) do
   it { should be_listening.with('tcp') }
 end
 
+# novnc console is now default
+describe port(6080) do
+  it { should be_listening.with('tcp') }
+end
+
 describe file('/etc/nova/nova.conf') do
   it { should contain "servicegroup_driver=mc" }
 end
