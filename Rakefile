@@ -13,7 +13,7 @@ namespace :serverspec do
   desc "Run serverspec to #{key}"
     RSpec::Core::RakeTask.new(key.split('.')[0].to_sym) do |t|
       t.pattern = 'spec/{' + properties[key][:roles].join(',') + '}/*_spec.rb'
-      t.rspec_opts = "-t ~host:#{key}"
+      ENV['TARGET_HOST'] = key
 #      t.rspec_opts += "-r rspec-extra-formatters -f JUnitFormatter -o serverspec-#{key}.xml"
     end
   end
