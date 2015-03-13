@@ -51,7 +51,12 @@ describe file('/etc/logrotate.d/haproxy') do
   its(:content) { should match /postrotate/ }
   its(:content) { should match /endscript/ }
 
-  it { should be_mode 644 }
+  it { should_not be_executable }
+  it { should be_readable.by('owner') }
+  it { should be_readable.by('group') }
+  it { should be_readable.by('others') }
+  it { should_not be_writable.by('group') }
+  it { should_not be_writable.by('others') }
   it { should be_owned_by 'root' }
 end
 
