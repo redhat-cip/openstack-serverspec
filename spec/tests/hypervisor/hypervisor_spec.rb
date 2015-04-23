@@ -47,6 +47,21 @@ describe file('/var/lib/nova/.ssh/config') do
 end
 
 #
+# RBD
+#
+# If rbd is enabled check keyring
+#
+
+rbd_enable = file('/etc/nova/nova.conf').contain("^rbd_user=",nil,nil)
+
+describe file('/etc/ceph/ceph.client.cinder.keyring'), :if => rbd_enable do
+  it { should be_file }
+  it { should be_mode 440 }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'cephkeyring' }
+end
+
+#
 # nova::compute : Ensure the nova computes packages
 #                 and services installed correctly
 #
