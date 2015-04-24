@@ -17,7 +17,7 @@ end
 #
 
 # when ceph is enabled, ensure we have the ceph keyring installed
-rbd_enable = file('/etc/cinder/cinder.conf').contain("volume_driver=cinder.volume.drivers.rbd.RBDDriver",nil,nil)
+rbd_enable = file('/etc/cinder/cinder.conf').contain("volume_driver\s*=\s*cinder.volume.drivers.rbd.RBDDriver",nil,nil)
 
 describe file('/etc/ceph/ceph.client.cinder.keyring'), :if => rbd_enable do
   it { should be_file }

@@ -52,7 +52,7 @@ end
 # If rbd is enabled check keyring
 #
 
-rbd_enable = file('/etc/nova/nova.conf').contain("^rbd_user=",nil,nil)
+rbd_enable = file('/etc/nova/nova.conf').contain("^rbd_user\s*=\s*\S+",nil,nil)
 
 describe file('/etc/ceph/ceph.client.cinder.keyring'), :if => rbd_enable do
   it { should be_file }
