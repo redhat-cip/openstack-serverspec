@@ -8,10 +8,6 @@ describe port(8777) do
   it { should be_listening.with('tcp') }
 end
 
-describe port(27017) do
-  it { should be_listening.with('tcp') }
-end
-
 describe user('ceilometer') do
   it { should exist }
   it { should belong_to_group 'ceilometer' }
