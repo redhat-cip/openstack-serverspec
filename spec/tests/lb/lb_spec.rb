@@ -28,9 +28,10 @@ describe file('/etc/keepalived/keepalived.conf') do
   it { should contain('interval 2').from(/^vrrp_script haproxy/).to(/^vrrp_instance/) }
   it { should contain('weight   2').from(/^vrrp_script haproxy/).to(/^vrrp_instance/) }
 
-  its(:content) { should match /^vrrp_instance 1 {/ }
-  it { should contain('virtual_router_id 1').from(/^vrrp_instance/).to(/^}/) }
+  its(:content) { should match /^vrrp_instance [0-9]+ {/ }
+  it { should contain('virtual_router_id').from(/^vrrp_instance/).to(/^}/) }
   its(:content) { should match /interface/ }
+  its(:content) { should match /virtual_ipaddress/ }
 end
 
 #
