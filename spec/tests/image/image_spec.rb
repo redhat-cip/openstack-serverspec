@@ -13,8 +13,12 @@ describe port(9191) do
 end
 
 # when ceph is enabled, ensure we have the ceph keyring installed
-describe command("bash -c \"if grep -q 'default_store = rbd' /etc/glance/glance-api.conf; then test -f /etc/ceph/ceph.client.glance.keyring; fi\"") do
-  it { should return_exit_status 0 }
+rbd_enable = file('/etc/glance/glance-api.conf').contain("^default_store\s*=\s*rbd\s*$",nil,nil)
+describe file('/etc/ceph/ceph.client.glance.keyring'), :if => rbd_enable do
+	it { should be_file }
+	it { should be_mode 400 }
+	it { should be_owned_by 'glance' }
+	it { should be_grouped_into 'glance' }
 end
 
 describe cron do

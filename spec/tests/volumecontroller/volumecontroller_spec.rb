@@ -17,8 +17,13 @@ end
 #
 
 # when ceph is enabled, ensure we have the ceph keyring installed
-describe command("bash -c 'if grep -q volume_backend_name=ceph /etc/cinder/cinder.conf; then test -f /etc/ceph/ceph.client.cinder.keyring; fi'") do
-  it { should return_exit_status 0 }
+rbd_enable = file('/etc/cinder/cinder.conf').contain("volume_driver\s*=\s*cinder.volume.drivers.rbd.RBDDriver",nil,nil)
+
+describe file('/etc/ceph/ceph.client.cinder.keyring'), :if => rbd_enable do
+  it { should be_file }
+  it { should be_mode 440 }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'cephkeyring' }
 end
 
 #
